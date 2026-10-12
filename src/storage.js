@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-const filePath = path.resolve('task.json')
+const filePath = path.resolve('tasks.json')
 
 export async function lerTarefas() {
     try {

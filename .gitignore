@@ -3,6 +3,7 @@ node_modules/
 
 # --- Arquivos de Dados Locais ---
 tasks.json
+task.json
 
 # --- Logs e Erros do Node/npm ---
 npm-debug.log*
