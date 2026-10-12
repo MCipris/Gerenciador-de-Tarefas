@@ -23,6 +23,31 @@ export async function adicionarTarefa(descricao) {
     console.log('Tarefa #'+proximoId+' adicionada.');
 }
 
+export async function editarTarefa(idTarefa, descricao){
+    if ( isNaN(idTarefa) ) {
+        console.log('Erro: Você precisa fornecer o id da tarefa.');
+        return;
+    } if ( !descricao ) {
+        console.log('Erro: Você precisa fornecer uma descrição para a tarefa.');
+        return;
+    }
+
+    const tarefasMap = await lerTarefas();
+    
+    if( tarefasMap.has(idTarefa) ){
+        let tarefa = tarefasMap.get(idTarefa);
+        tarefa.descricao = descricao;
+        tarefasMap.set(idTarefa, tarefa);
+    } else {
+        console.log('Erro: O id desta tarefa não foi encontrado.');
+        return;
+    }   
+
+    await salvarTarefas(tarefasMap);
+
+    console.log('Tarefa #'+idTarefa+' editada.');
+}
+
 export async function listarTarefas() {
     const tarefasMap = await lerTarefas();
 
@@ -34,6 +59,28 @@ export async function listarTarefas() {
         }
     }
     return;
+}
+
+export async function concluirTarefa(idTarefa){
+    if ( isNaN(idTarefa) ) {
+        console.log('Erro: Você precisa fornecer o id da tarefa.');
+        return;
+    }
+
+    const tarefasMap = await lerTarefas();
+    
+    if( tarefasMap.has(idTarefa) ){
+        let tarefa = tarefasMap.get(idTarefa);
+        tarefa.status = 'concluída';
+        tarefasMap.set(idTarefa, tarefa);
+    } else {
+        console.log('Erro: O id desta tarefa não foi encontrado.');
+        return;
+    }   
+
+    await salvarTarefas(tarefasMap);
+
+    console.log('Tarefa #'+idTarefa+' concluída.');
 }
 
 export async function removerTarefa(idTarefa) {
