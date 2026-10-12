@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
-import { adicionarTarefa, listarTarefas, removerTarefa } from '../src/commands.js';
+import { adicionarTarefa, editarTarefa, listarTarefas, concluirTarefa, removerTarefa } from '../src/commands.js';
 
-const [,, comando, arg1] = process.argv;
+const [,, comando, arg1, arg2] = process.argv;
 
 async function main() {
     switch (comando) {
@@ -10,11 +10,13 @@ async function main() {
             await adicionarTarefa(arg1);
             break;
         case 'editar':
+            await editarTarefa(arg1, arg2);
             break;
         case 'listar':
             await listarTarefas();
             break;
         case 'concluir':
+            await concluirTarefa(arg1);
             break;
         case 'remover':
             await removerTarefa(arg1);
