@@ -1,0 +1,13 @@
+{
+  "name": "gerenciador-de-tarefas",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Gerenciador de tarefas via CLI",
+  "main": "index.js",
+  "bin": {
+    "tarefas": "./bin/index.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

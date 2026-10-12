@@ -1,0 +1,20 @@
+# --- Dependências ---
+node_modules/
+
+# --- Arquivos de Dados Locais ---
+tasks.json
+
+# --- Logs e Erros do Node/npm ---
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# --- Arquivos de Sistema Operacional ---
+.DS_Store
+Thumbs.db
+
+# --- Configurações de Editores e IDEs ---
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
