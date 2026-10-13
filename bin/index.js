@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import { adicionarTarefa, editarTarefa, listarTarefas, concluirTarefa, removerTarefa } from '../src/commands.js';
+import { exibirAjuda } from '../src/help.js';
 
 const [,, comando, arg1, arg2] = process.argv;
 
@@ -13,13 +14,16 @@ async function main() {
             await editarTarefa(arg1, arg2);
             break;
         case 'listar':
-            await listarTarefas();
+            await listarTarefas(arg1);
             break;
         case 'concluir':
             await concluirTarefa(arg1);
             break;
         case 'remover':
             await removerTarefa(arg1);
+            break;
+        case 'ajuda':
+            await exibirAjuda();
             break;
         default:
             console.log('Comando não reconhecido.');
