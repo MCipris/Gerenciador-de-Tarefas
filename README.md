@@ -8,6 +8,9 @@
 
 ## Tecnologias Utilizadas
 * **Node.js** (Versão 18+) - Ambiente de execução JavaScript de alta performance.
+* **ES Modules** - O padrão oficial do JavaScript para modularização de código, permitindo utilizar a sintaxe de `import` e `export`.
+* **node:fs/promises**: Módulo nativo do Node.js para interação com o sistema de arquivos utilizando o padrão de promessas.
+* **node:path**: Módulo nativo do Node.js projetado para auxiliar na manipulação e resolução de caminhos de diretórios e arquivos.
 
 ---
 
