@@ -48,17 +48,33 @@ export async function editarTarefa(idTarefa, descricao){
     console.log('Tarefa #'+idTarefa+' editada.');
 }
 
-export async function listarTarefas() {
+export async function listarTarefas(filtro) {
     const tarefasMap = await lerTarefas();
 
-    for(const [id, tarefa] of tarefasMap){
-        if( tarefa.status === "concluída" ){
-            console.log('[X] #'+id+' '+tarefa.descricao);
-        } else {
-            console.log('[ ] #'+id+' '+tarefa.descricao);
+    if( filtro === undefined ){
+        for(const [id, tarefa] of tarefasMap){
+            if( tarefa.status === "concluída" ){
+                console.log('[X] #'+id+' '+tarefa.descricao);
+            } else {
+                console.log('[ ] #'+id+' '+tarefa.descricao);
+            }
+        }        
+    } else if( filtro === 'pendentes' ) {
+        for(const [id, tarefa] of tarefasMap){
+            if( tarefa.status === "pendente" ){
+                console.log('[ ] #'+id+' '+tarefa.descricao);
+            }
         }
+    } else if( filtro === 'concluidas' ) {
+        for(const [id, tarefa] of tarefasMap){
+            if( tarefa.status === "concluída" ){
+                console.log('[X] #'+id+' '+tarefa.descricao);
+            } 
+        }
+    } else {
+        console.log('Erro: Filtro inválido. Use "pendentes", "concluidas" ou deixe vazio.');
+        return;
     }
-    return;
 }
 
 export async function concluirTarefa(idTarefa){
@@ -71,8 +87,13 @@ export async function concluirTarefa(idTarefa){
     
     if( tarefasMap.has(idTarefa) ){
         let tarefa = tarefasMap.get(idTarefa);
-        tarefa.status = 'concluída';
-        tarefasMap.set(idTarefa, tarefa);
+        if( tarefa.status === 'pendente' ) {
+            tarefa.status = 'concluída';
+            tarefasMap.set(idTarefa, tarefa);   
+        } else {
+            console.log('Erro: Esta tarefa já foi concluída.');
+            return;    
+        }
     } else {
         console.log('Erro: O id desta tarefa não foi encontrado.');
         return;
